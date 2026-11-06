@@ -970,9 +970,9 @@ export default function Home({ models, appName }) {
                 <section
                     id="z-fold8-section"
                     ref={foldSectionRef}
-                    className="relative w-full max-w-[1720px] mx-auto scroll-mt-16 mb-4 sm:mb-6 lg:mb-8"
+                    className="relative w-full px-[3vw] max-w-[1720px] mx-auto scroll-mt-16 mb-6 sm:mb-8 lg:mb-12"
                 >
-                    <div className="relative w-full aspect-[720/1080] md:aspect-[1440/640] max-h-[720px] rounded-none overflow-hidden bg-[#1b1527]">
+                    <div className="relative w-full h-[calc((100vh-52px)*0.94)] rounded-none overflow-hidden bg-[#1b1527] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.22)]">
                         {/* Background Hero Banner - Responsive Picture with Subtle Cinematic Parallax */}
                         <motion.div
                             style={{ y: foldImageY }}
@@ -985,7 +985,7 @@ export default function Home({ models, appName }) {
                                 <img
                                     src="/images/posters/zfold8-official-poster.jpg"
                                     alt="Samsung Galaxy Z Fold8 5G - Galaxy AI Resmi SEIN"
-                                    className="w-full h-full object-cover md:object-fill select-none pointer-events-none"
+                                    className="w-full h-full object-cover select-none pointer-events-none"
                                     loading="lazy"
                                     decoding="async"
                                 />
