@@ -180,7 +180,7 @@ export default function Buy({
                         </div>
 
                         {/* Device Vector Mockup */}
-                        <div className="relative w-full max-w-md h-[360px] sm:h-[420px] flex items-center justify-center p-4">
+                        <div className="relative w-full max-w-md h-[300px] sm:h-[350px] flex items-center justify-center p-4">
                             <img
                                 src={viewAngle === 'back' ? selectedVariant?.image_url : frontImage}
                                 alt={`${productName} - ${selectedVariant?.color_name}`}
@@ -212,24 +212,24 @@ export default function Buy({
                     {/* RIGHT COLUMN: PROGRESSIVE STEP-BY-STEP CONFIGURATOR */}
                     <div className="w-full lg:w-5/12">
                         {/* Title and Trust Badge */}
-                        <div className="border-b border-gray-200 pb-6 mb-8">
-                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold mb-3">
+                        <div className="border-b border-gray-200 pb-5 mb-6">
+                            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-semibold mb-2.5">
                                 <span>✓</span>
                                 Unit Resmi SEIN 100% Original
                             </div>
-                            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">
+                            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-950">
                                 Konfigurasi {productName}
                             </h1>
-                            <p className="text-sm text-gray-600 mt-2">
+                            <p className="text-xs sm:text-sm text-gray-600 mt-1.5">
                                 Sesuaikan warna bodi, kapasitas memori, dan pilih metode pengambilan barang di toko atau pengiriman berasuransi.
                             </p>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="space-y-10">
+                        <form onSubmit={handleSubmit} className="space-y-8">
                             {/* STEP 1: PILIH WARNA FINIS */}
                             <section>
-                                <div className="flex items-center justify-between mb-3">
-                                    <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900">
+                                <div className="flex items-center justify-between mb-2.5">
+                                    <h2 className="text-xs font-bold uppercase tracking-wider text-gray-900">
                                         1. Pilih Warna Finis
                                     </h2>
                                     <span className="text-xs font-medium text-gray-600">
@@ -239,7 +239,7 @@ export default function Buy({
                                         </strong>
                                     </span>
                                 </div>
-                                <div className="grid grid-cols-2 gap-3">
+                                <div className="grid grid-cols-2 gap-2.5">
                                     {colors.map((color) => {
                                         const isSelected = selectedVariant?.color_name === color.name;
                                         return (
@@ -247,16 +247,16 @@ export default function Buy({
                                                 key={color.name}
                                                 type="button"
                                                 onClick={() => handleColorChange(color.name)}
-                                                className={`p-3.5 rounded-2xl border text-left flex items-center gap-3 transition-all ${
+                                                className={`p-2.5 rounded-lg border text-left flex items-center gap-2.5 transition-all ${
                                                     isSelected
-                                                        ? 'border-[#2189FF] bg-blue-50/40 ring-2 ring-[#2189FF]/20 shadow-xs'
+                                                        ? 'border-[#2189FF] bg-blue-50/40 ring-1 ring-[#2189FF] shadow-2xs'
                                                         : 'border-gray-200 hover:border-gray-300 bg-white'
                                                 }`}
                                             >
                                                 <span
-                                                    className={`w-6 h-6 rounded-full flex-shrink-0 border ${
+                                                    className={`w-5 h-5 rounded-full flex-shrink-0 border ${
                                                         isSelected
-                                                            ? 'ring-2 ring-offset-2 ring-[#2189FF]'
+                                                            ? 'ring-2 ring-offset-1 ring-[#2189FF]'
                                                             : 'border-black/20'
                                                     }`}
                                                     style={{ backgroundColor: color.hex }}
@@ -272,13 +272,13 @@ export default function Buy({
 
                             {/* STEP 2: PILIH KAPASITAS MEMORI & PENYIMPANAN */}
                             <section>
-                                <div className="flex items-center justify-between mb-3">
-                                    <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900">
+                                <div className="flex items-center justify-between mb-2.5">
+                                    <h2 className="text-xs font-bold uppercase tracking-wider text-gray-900">
                                         2. Pilih Kapasitas Memori & Penyimpanan
                                     </h2>
-                                    <span className="text-xs text-gray-500">Harga Resmi SEIN</span>
+                                    <span className="text-[11px] text-gray-500">Harga Resmi SEIN</span>
                                 </div>
-                                <div className="space-y-3">
+                                <div className="space-y-2.5">
                                     {storageOptions.map((opt) => {
                                         const isSelected = selectedVariant?.id === opt.id;
                                         const isOutOfStock = opt.stock <= 0;
@@ -290,11 +290,11 @@ export default function Buy({
                                                 type="button"
                                                 disabled={isOutOfStock}
                                                 onClick={() => handleStorageChange(opt.id)}
-                                                className={`w-full p-4 rounded-2xl border text-left flex items-center justify-between transition-all ${
+                                                className={`w-full p-3 rounded-lg border text-left flex items-center justify-between transition-all ${
                                                     isOutOfStock
                                                         ? 'opacity-50 cursor-not-allowed bg-gray-50 border-gray-200'
                                                         : isSelected
-                                                        ? 'border-[#2189FF] bg-blue-50/40 ring-2 ring-[#2189FF]/20 shadow-xs'
+                                                        ? 'border-[#2189FF] bg-blue-50/40 ring-1 ring-[#2189FF] shadow-2xs'
                                                         : 'border-gray-200 hover:border-gray-300 bg-white'
                                                 }`}
                                             >
@@ -337,41 +337,41 @@ export default function Buy({
 
                             {/* STEP 3: METODE PENGAMBILAN BARANG */}
                             <section>
-                                <div className="mb-3">
-                                    <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900">
+                                <div className="mb-2.5">
+                                    <h2 className="text-xs font-bold uppercase tracking-wider text-gray-900">
                                         3. Metode Pengambilan Barang
                                     </h2>
                                 </div>
-                                <div className="grid grid-cols-2 gap-3 mb-4">
+                                <div className="grid grid-cols-2 gap-2.5 mb-3.5">
                                     <button
                                         type="button"
                                         onClick={() => setData('fulfillment_method', 'pickup')}
-                                        className={`p-3.5 rounded-2xl border text-left transition-all ${
+                                        className={`p-3 rounded-lg border text-left transition-all ${
                                             data.fulfillment_method === 'pickup'
-                                                ? 'border-[#2189FF] bg-blue-50/40 ring-2 ring-[#2189FF]/20 shadow-xs'
+                                                ? 'border-[#2189FF] bg-blue-50/40 ring-1 ring-[#2189FF] shadow-2xs'
                                                 : 'border-gray-200 hover:border-gray-300 bg-white'
                                         }`}
                                     >
-                                        <div className="text-sm font-bold text-gray-900">
+                                        <div className="text-xs sm:text-sm font-bold text-gray-900">
                                             Ambil di Gerai SES
                                         </div>
-                                        <div className="text-xs text-gray-500 mt-1">
+                                        <div className="text-[11px] text-gray-500 mt-0.5">
                                             Siap dalam 2 jam (Gratis)
                                         </div>
                                     </button>
                                     <button
                                         type="button"
                                         onClick={() => setData('fulfillment_method', 'delivery')}
-                                        className={`p-3.5 rounded-2xl border text-left transition-all ${
+                                        className={`p-3 rounded-lg border text-left transition-all ${
                                             data.fulfillment_method === 'delivery'
-                                                ? 'border-[#2189FF] bg-blue-50/40 ring-2 ring-[#2189FF]/20 shadow-xs'
+                                                ? 'border-[#2189FF] bg-blue-50/40 ring-1 ring-[#2189FF] shadow-2xs'
                                                 : 'border-gray-200 hover:border-gray-300 bg-white'
                                         }`}
                                     >
-                                        <div className="text-sm font-bold text-gray-900">
+                                        <div className="text-xs sm:text-sm font-bold text-gray-900">
                                             Kirim ke Alamat
                                         </div>
-                                        <div className="text-xs text-gray-500 mt-1">
+                                        <div className="text-[11px] text-gray-500 mt-0.5">
                                             Kemasan kayu + asuransi
                                         </div>
                                     </button>
@@ -379,10 +379,10 @@ export default function Buy({
 
                                 {/* Pickup Store Dropdown */}
                                 {data.fulfillment_method === 'pickup' && (
-                                    <div className="p-4 rounded-2xl bg-gray-50 border border-gray-200 space-y-3">
+                                    <div className="p-3.5 rounded-lg bg-gray-50 border border-gray-200 space-y-2.5">
                                         <label
                                             htmlFor="pickup_store"
-                                            className="block text-xs font-semibold uppercase tracking-wider text-gray-700"
+                                            className="block text-[11px] font-semibold uppercase tracking-wider text-gray-700"
                                         >
                                             Pilih Cabang Samsung Experience Store (SES):
                                         </label>
@@ -390,7 +390,7 @@ export default function Buy({
                                             id="pickup_store"
                                             value={data.pickup_store}
                                             onChange={(e) => setData('pickup_store', e.target.value)}
-                                            className="w-full rounded-xl border-gray-300 bg-white text-sm focus:border-[#2189FF] focus:ring-[#2189FF] py-2.5 px-3"
+                                            className="w-full rounded-md border-gray-300 bg-white text-xs focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
                                         >
                                             {pickupStores.map((store) => (
                                                 <option key={store} value={store}>
@@ -398,7 +398,7 @@ export default function Buy({
                                                 </option>
                                             ))}
                                         </select>
-                                        <p className="text-xs text-gray-500 leading-relaxed">
+                                        <p className="text-[11px] text-gray-500 leading-normal">
                                             Pemberitahuan nomor pengambilan dan verifikasi akan dikirimkan langsung ke nomor WhatsApp dan email pemesan.
                                         </p>
                                     </div>
@@ -406,7 +406,7 @@ export default function Buy({
 
                                 {/* Delivery Address Inputs */}
                                 {data.fulfillment_method === 'delivery' && (
-                                    <div className="p-4 rounded-2xl bg-gray-50 border border-gray-200 space-y-3">
+                                    <div className="p-3.5 rounded-lg bg-gray-50 border border-gray-200 space-y-2.5">
                                         <div>
                                             <label
                                                 htmlFor="shipping_address"
@@ -420,18 +420,18 @@ export default function Buy({
                                                 value={data.shipping_address}
                                                 onChange={(e) => setData('shipping_address', e.target.value)}
                                                 placeholder="Contoh: Jl. Sudirman No. 10, RT 02 / RW 05"
-                                                className="w-full rounded-xl border-gray-300 bg-white text-sm focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
+                                                className="w-full rounded-md border-gray-300 bg-white text-xs focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
                                                 required
                                             ></textarea>
                                             {errors.shipping_address && (
                                                 <p className="text-xs text-rose-600 mt-1">{errors.shipping_address}</p>
                                             )}
                                         </div>
-                                        <div className="grid grid-cols-2 gap-3">
+                                        <div className="grid grid-cols-2 gap-2.5">
                                             <div>
                                                 <label
                                                     htmlFor="shipping_province"
-                                                    className="block text-xs font-semibold text-gray-700 mb-1"
+                                                    className="block text-[11px] font-semibold text-gray-700 mb-1"
                                                 >
                                                     Provinsi
                                                 </label>
@@ -441,14 +441,14 @@ export default function Buy({
                                                     value={data.shipping_province}
                                                     onChange={(e) => setData('shipping_province', e.target.value)}
                                                     placeholder="DKI Jakarta"
-                                                    className="w-full rounded-xl border-gray-300 bg-white text-sm focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
+                                                    className="w-full rounded-md border-gray-300 bg-white text-xs focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
                                                     required
                                                 />
                                             </div>
                                             <div>
                                                 <label
                                                     htmlFor="shipping_city"
-                                                    className="block text-xs font-semibold text-gray-700 mb-1"
+                                                    className="block text-[11px] font-semibold text-gray-700 mb-1"
                                                 >
                                                     Kota / Kabupaten
                                                 </label>
@@ -458,16 +458,16 @@ export default function Buy({
                                                     value={data.shipping_city}
                                                     onChange={(e) => setData('shipping_city', e.target.value)}
                                                     placeholder="Jakarta Selatan"
-                                                    className="w-full rounded-xl border-gray-300 bg-white text-sm focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
+                                                    className="w-full rounded-md border-gray-300 bg-white text-xs focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
                                                     required
                                                 />
                                             </div>
                                         </div>
-                                        <div className="grid grid-cols-2 gap-3">
+                                        <div className="grid grid-cols-2 gap-2.5">
                                             <div>
                                                 <label
                                                     htmlFor="shipping_district"
-                                                    className="block text-xs font-semibold text-gray-700 mb-1"
+                                                    className="block text-[11px] font-semibold text-gray-700 mb-1"
                                                 >
                                                     Kecamatan
                                                 </label>
@@ -477,14 +477,14 @@ export default function Buy({
                                                     value={data.shipping_district}
                                                     onChange={(e) => setData('shipping_district', e.target.value)}
                                                     placeholder="Kebayoran Baru"
-                                                    className="w-full rounded-xl border-gray-300 bg-white text-sm focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
+                                                    className="w-full rounded-md border-gray-300 bg-white text-xs focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
                                                     required
                                                 />
                                             </div>
                                             <div>
                                                 <label
                                                     htmlFor="shipping_postal_code"
-                                                    className="block text-xs font-semibold text-gray-700 mb-1"
+                                                    className="block text-[11px] font-semibold text-gray-700 mb-1"
                                                 >
                                                     Kode Pos
                                                 </label>
@@ -494,7 +494,7 @@ export default function Buy({
                                                     value={data.shipping_postal_code}
                                                     onChange={(e) => setData('shipping_postal_code', e.target.value)}
                                                     placeholder="12180"
-                                                    className="w-full rounded-xl border-gray-300 bg-white text-sm focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
+                                                    className="w-full rounded-md border-gray-300 bg-white text-xs focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
                                                     required
                                                 />
                                             </div>
@@ -505,12 +505,12 @@ export default function Buy({
 
                             {/* STEP 4: DATA PEMESAN & PEMBAYARAN */}
                             <section>
-                                <div className="mb-3">
-                                    <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900">
+                                <div className="mb-2.5">
+                                    <h2 className="text-xs font-bold uppercase tracking-wider text-gray-900">
                                         4. Data Pemesan & Pembayaran
                                     </h2>
                                 </div>
-                                <div className="space-y-3">
+                                <div className="space-y-2.5">
                                     <div>
                                         <label
                                             htmlFor="customer_name"
@@ -524,7 +524,7 @@ export default function Buy({
                                             value={data.customer_name}
                                             onChange={(e) => setData('customer_name', e.target.value)}
                                             placeholder="Contoh: Budi Santoso"
-                                            className="w-full rounded-xl border-gray-300 bg-white text-sm focus:border-[#2189FF] focus:ring-[#2189FF] py-2.5 px-3"
+                                            className="w-full rounded-md border-gray-300 bg-white text-xs focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
                                             required
                                         />
                                         {errors.customer_name && (
@@ -532,7 +532,7 @@ export default function Buy({
                                         )}
                                     </div>
 
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                         <div>
                                             <label
                                                 htmlFor="customer_phone"
@@ -546,7 +546,7 @@ export default function Buy({
                                                 value={data.customer_phone}
                                                 onChange={(e) => setData('customer_phone', e.target.value)}
                                                 placeholder="081234567890"
-                                                className="w-full rounded-xl border-gray-300 bg-white text-sm focus:border-[#2189FF] focus:ring-[#2189FF] py-2.5 px-3"
+                                                className="w-full rounded-md border-gray-300 bg-white text-xs focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
                                                 required
                                             />
                                             {errors.customer_phone && (
@@ -566,7 +566,7 @@ export default function Buy({
                                                 value={data.customer_email}
                                                 onChange={(e) => setData('customer_email', e.target.value)}
                                                 placeholder="budi@example.com"
-                                                className="w-full rounded-xl border-gray-300 bg-white text-sm focus:border-[#2189FF] focus:ring-[#2189FF] py-2.5 px-3"
+                                                className="w-full rounded-md border-gray-300 bg-white text-xs focus:border-[#2189FF] focus:ring-[#2189FF] py-2 px-3"
                                                 required
                                             />
                                             {errors.customer_email && (
@@ -576,14 +576,14 @@ export default function Buy({
                                     </div>
 
                                     {/* Payment Method Selector */}
-                                    <div className="pt-2">
+                                    <div className="pt-1.5">
                                         <label
                                             htmlFor="payment_method"
                                             className="block text-xs font-semibold text-gray-700 mb-2"
                                         >
                                             Pilih Metode Pembayaran Resmi:
                                         </label>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                             {[
                                                 { id: 'qris', name: 'QRIS', desc: 'BCA, Mandiri, GoPay, OVO, DANA' },
                                                 { id: 'va_bca', name: 'BCA Virtual Account', desc: 'Verifikasi instan otomatis' },
@@ -597,9 +597,9 @@ export default function Buy({
                                                         key={m.id}
                                                         type="button"
                                                         onClick={() => setData('payment_method', m.id)}
-                                                        className={`p-3 rounded-xl border text-left transition-all ${
+                                                        className={`p-2.5 rounded-lg border text-left transition-all ${
                                                             isSelected
-                                                                ? 'border-[#2189FF] bg-blue-50/40 ring-2 ring-[#2189FF]/20 shadow-xs'
+                                                                ? 'border-[#2189FF] bg-blue-50/40 ring-1 ring-[#2189FF] shadow-2xs'
                                                                 : 'border-gray-200 hover:border-gray-300 bg-white'
                                                         }`}
                                                     >
@@ -614,7 +614,7 @@ export default function Buy({
                             </section>
 
                             {/* ORDER SUMMARY & SUBMIT */}
-                            <div className="p-6 rounded-2xl bg-gray-50 border border-gray-200 space-y-4">
+                            <div className="p-4 sm:p-5 rounded-lg bg-gray-50 border border-gray-200 space-y-3.5">
                                 <div className="space-y-2 text-xs">
                                     <div className="flex justify-between text-gray-600">
                                         <span>Perangkat</span>
@@ -637,8 +637,8 @@ export default function Buy({
                                         </span>
                                     </div>
                                     <div className="pt-2 border-t border-gray-200 flex justify-between items-baseline">
-                                        <span className="text-sm font-bold text-gray-900">Total Pembayaran</span>
-                                        <span className="text-xl font-bold text-[#1428A0]">
+                                        <span className="text-xs sm:text-sm font-bold text-gray-900">Total Pembayaran</span>
+                                        <span className="text-lg font-bold text-[#1428A0]">
                                             {formatRupiah(selectedVariant?.price || 0)}
                                         </span>
                                     </div>
@@ -647,10 +647,10 @@ export default function Buy({
                                 <button
                                     type="submit"
                                     disabled={processing || !selectedVariant || selectedVariant?.stock <= 0}
-                                    className={`w-full py-4 px-6 rounded-full text-base font-semibold text-white shadow-sm transition-all ${
+                                    className={`w-full py-3 px-5 rounded-full text-sm font-semibold text-white shadow-2xs transition-all ${
                                         processing || !selectedVariant || selectedVariant?.stock <= 0
                                             ? 'opacity-60 cursor-not-allowed bg-gray-400'
-                                            : 'bg-[#2189FF] hover:bg-[#1a70d4] hover:shadow'
+                                            : 'bg-[#2189FF] hover:bg-[#1a70d4] hover:shadow-xs'
                                     }`}
                                 >
                                     {processing ? 'Memproses Pesanan Resmi...' : 'Selesaikan Pemesanan & Dapatkan Faktur'}

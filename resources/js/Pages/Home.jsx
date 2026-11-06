@@ -385,7 +385,7 @@ export default function Home({ models, appName }) {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
                         onClick={handleMenuLeaveInstant}
-                        className="fixed inset-0 top-16 bg-black/25 backdrop-blur-xs z-40"
+                        className="fixed inset-0 top-[52px] bg-black/25 backdrop-blur-xs z-40"
                     />
                 )}
             </AnimatePresence>
@@ -401,7 +401,7 @@ export default function Home({ models, appName }) {
                 }`}
             >
                 <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
-                    <div className="flex items-center justify-between h-16">
+                    <div className="flex items-center justify-between h-[52px]">
                         {/* Logo & Brand Identity (Neutral Zone) */}
                         <div
                             className="flex items-center gap-3"
@@ -411,13 +411,13 @@ export default function Home({ models, appName }) {
                                 <img
                                     src="/images/logo/galax-lockup.svg"
                                     alt="Galax — Samsung Authorized Reseller"
-                                    className="h-10 sm:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                                    className="h-7 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                                 />
                             </Link>
                         </div>
 
                         {/* Center Interactive Navigation Links */}
-                        <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-gray-700">
+                        <nav className="hidden md:flex items-center gap-1 text-xs font-semibold text-gray-700">
                             {[
                                 { id: 'store', label: 'Store' },
                                 { id: 's-series', label: 'Galaxy S Series' },
@@ -428,7 +428,7 @@ export default function Home({ models, appName }) {
                                     key={item.id}
                                     type="button"
                                     onMouseEnter={() => handleMenuEnter(item.id)}
-                                    className={`relative px-4 py-2 rounded-full transition-colors ${
+                                    className={`relative px-3 py-1.5 rounded-full transition-colors ${
                                         activeMenuId === item.id
                                             ? 'text-[#1428A0] font-semibold'
                                             : 'hover:text-gray-950'
@@ -463,10 +463,10 @@ export default function Home({ models, appName }) {
                                     setHoveredActionId('search');
                                     handleUserMenuLeave();
                                 }}
-                                className="relative p-2 sm:p-2.5 rounded-full text-gray-700 hover:text-gray-950 transition-colors flex items-center justify-center focus:outline-none cursor-pointer"
+                                className="relative p-1.5 sm:p-2 rounded-full text-gray-700 hover:text-gray-950 transition-colors flex items-center justify-center focus:outline-none cursor-pointer"
                                 aria-label="Cari Produk"
                             >
-                                <SearchIcon className="w-5 h-5" />
+                                <SearchIcon className="w-4 h-4" />
                                 {hoveredActionId === 'search' && (
                                     <motion.div
                                         layoutId="rightNavHoverPill"
@@ -484,10 +484,10 @@ export default function Home({ models, appName }) {
                                     setHoveredActionId('cart');
                                     handleUserMenuLeave();
                                 }}
-                                className="relative p-2 sm:p-2.5 rounded-full text-gray-700 hover:text-gray-950 transition-colors flex items-center justify-center focus:outline-none cursor-pointer"
+                                className="relative p-1.5 sm:p-2 rounded-full text-gray-700 hover:text-gray-950 transition-colors flex items-center justify-center focus:outline-none cursor-pointer"
                                 aria-label="Keranjang Belanja"
                             >
-                                <CartIcon className="w-5 h-5" />
+                                <CartIcon className="w-4 h-4" />
                                 {hoveredActionId === 'cart' && (
                                     <motion.div
                                         layoutId="rightNavHoverPill"
@@ -515,13 +515,13 @@ export default function Home({ models, appName }) {
                                         setHoveredActionId('user');
                                         handleUserMenuEnter();
                                     }}
-                                    className={`relative p-2 sm:p-2.5 rounded-full transition-colors flex items-center justify-center focus:outline-none cursor-pointer ${
+                                    className={`relative p-1.5 sm:p-2 rounded-full transition-colors flex items-center justify-center focus:outline-none cursor-pointer ${
                                         isUserMenuOpen ? 'text-gray-950' : 'text-gray-700 hover:text-gray-950'
                                     }`}
                                     aria-label="Akun & Layanan Pengguna"
                                     aria-expanded={isUserMenuOpen}
                                 >
-                                    <UserIcon className="w-5 h-5" />
+                                    <UserIcon className="w-4 h-4" />
                                     {(hoveredActionId === 'user' || isUserMenuOpen) && (
                                         <motion.div
                                             layoutId="rightNavHoverPill"
@@ -540,7 +540,7 @@ export default function Home({ models, appName }) {
                                             exit={{ opacity: 0, y: -10, scaleY: 0.96 }}
                                             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                                             style={{ transformOrigin: 'top' }}
-                                            className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200/90 rounded-xl shadow-[0_12px_28px_rgba(0,0,0,0.08)] py-1.5 z-50 origin-top overflow-hidden before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3"
+                                            className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200/90 rounded-md shadow-[0_12px_28px_rgba(0,0,0,0.08)] py-1.5 z-50 origin-top overflow-hidden before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3"
                                         >
                                             <div className="flex flex-col">
                                                 {/* Option 1: Login */}
@@ -590,7 +590,7 @@ export default function Home({ models, appName }) {
                             onMouseLeave={handleMenuLeave}
                             className="overflow-hidden bg-white border-t border-gray-100 shadow-xl"
                         >
-                            <div className="w-full max-w-[1500px] mx-auto px-6 lg:px-12 xl:px-16 py-9">
+                            <div className="w-full max-w-[1500px] mx-auto px-6 lg:px-12 xl:px-16 py-6">
                                 {activeMenuId === 'store' && (
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                                         <div>
@@ -900,14 +900,14 @@ export default function Home({ models, appName }) {
                     className="relative w-full bg-white"
                     style={{ height: 'calc(100vh + 400px)' }}
                 >
-                    <div className="sticky top-16 w-full">
+                    <div className="sticky top-[52px] w-full">
                         <div className="w-full overflow-hidden">
                             <motion.div
                                 style={{
                                     scale: heroCardScale,
                                     boxShadow: heroCardShadow,
                                 }}
-                                className="relative w-full h-[calc(100vh-64px)] overflow-hidden bg-[#0c1022] origin-center will-change-transform"
+                                className="relative w-full h-[calc(100vh-52px)] overflow-hidden bg-[#0c1022] origin-center will-change-transform"
                             >
                                 {/* Background Hero Banner Image with Parallax Depth */}
                                 <motion.div
@@ -934,18 +934,18 @@ export default function Home({ models, appName }) {
                                         initial={{ opacity: 0, y: 16 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                                        className="max-w-md lg:max-w-lg space-y-3 pointer-events-auto"
+                                        className="max-w-md lg:max-w-lg space-y-2.5 pointer-events-auto"
                                     >
                                         <h1 className="sr-only">Samsung Galaxy S26 Ultra 5G - Galaxy AI</h1>
 
-                                        <p className="text-white/85 text-sm sm:text-base font-normal tracking-normal leading-relaxed drop-shadow-sm">
+                                        <p className="text-white/85 text-xs sm:text-sm font-normal tracking-normal leading-relaxed drop-shadow-sm">
                                             Mulai dari <span className="text-white font-semibold">{formatRupiah(s26Model?.starting_price || 21999000)}</span> atau cicilan 0% hingga 24 bulan.
                                         </p>
 
-                                        <div className="pt-1 flex items-center gap-5">
+                                        <div className="pt-1 flex items-center gap-4">
                                             <Link
                                                 href="/buy/samsung-galaxy-s26-ultra"
-                                                className="inline-flex items-center justify-center text-sm font-semibold px-7 py-2.5 rounded-full bg-white text-gray-900 hover:bg-[#0071E3] hover:text-white shadow-sm active:scale-[0.98] transition-all duration-200 ease-out cursor-pointer"
+                                                className="inline-flex items-center justify-center text-xs sm:text-[13px] font-semibold px-5 py-2 rounded-full bg-white text-gray-900 hover:bg-[#0071E3] hover:text-white shadow-xs active:scale-[0.98] transition-all duration-200 ease-out cursor-pointer"
                                             >
                                                 Beli
                                             </Link>
@@ -954,7 +954,7 @@ export default function Home({ models, appName }) {
                                                 onClick={() => {
                                                     document.getElementById('z-fold8-section')?.scrollIntoView({ behavior: 'smooth' });
                                                 }}
-                                                className="inline-flex items-center text-sm font-medium text-white hover:text-white/80 transition-colors underline underline-offset-8 decoration-white/40 hover:decoration-white py-1 cursor-pointer"
+                                                className="inline-flex items-center text-xs sm:text-[13px] font-medium text-white hover:text-white/80 transition-colors underline underline-offset-8 decoration-white/40 hover:decoration-white py-1 cursor-pointer"
                                             >
                                                 Lebih detail &rsaquo;
                                             </button>
@@ -970,9 +970,9 @@ export default function Home({ models, appName }) {
                 <section
                     id="z-fold8-section"
                     ref={foldSectionRef}
-                    className="relative w-full px-3 sm:px-6 lg:px-8 max-w-[1720px] mx-auto scroll-mt-20 mb-6 sm:mb-8 lg:mb-12"
+                    className="relative w-full max-w-[1720px] mx-auto scroll-mt-16 mb-4 sm:mb-6 lg:mb-8"
                 >
-                    <div className="relative w-full aspect-[720/1080] md:aspect-[1440/640] max-h-[720px] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#1b1527] shadow-xl">
+                    <div className="relative w-full aspect-[720/1080] md:aspect-[1440/640] max-h-[720px] rounded-none overflow-hidden bg-[#1b1527]">
                         {/* Background Hero Banner - Responsive Picture with Subtle Cinematic Parallax */}
                         <motion.div
                             style={{ y: foldImageY }}
@@ -999,18 +999,18 @@ export default function Home({ models, appName }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.25 }}
                                 transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                                className="max-w-md lg:max-w-lg space-y-3 pointer-events-auto text-left"
+                                className="max-w-md lg:max-w-lg space-y-2.5 pointer-events-auto text-left"
                             >
                                 <h2 className="sr-only">Samsung Galaxy Z Fold8 5G - Galaxy AI</h2>
 
-                                <p className="text-white/85 text-sm sm:text-base font-normal tracking-normal leading-relaxed drop-shadow-sm">
+                                <p className="text-white/85 text-xs sm:text-sm font-normal tracking-normal leading-relaxed drop-shadow-sm">
                                     Mulai dari <span className="text-white font-semibold">{formatRupiah(foldModel?.starting_price || 26999000)}</span> atau cicilan 0% hingga 24 bulan.
                                 </p>
 
-                                <div className="pt-1 flex items-center gap-5">
+                                <div className="pt-1 flex items-center gap-4">
                                     <Link
                                         href="/buy/samsung-galaxy-z-fold8"
-                                        className="inline-flex items-center justify-center text-sm font-semibold px-7 py-2.5 rounded-full bg-white text-gray-900 hover:bg-[#0071E3] hover:text-white shadow-sm active:scale-[0.98] transition-all duration-200 ease-out"
+                                        className="inline-flex items-center justify-center text-xs sm:text-[13px] font-semibold px-5 py-2 rounded-full bg-white text-gray-900 hover:bg-[#0071E3] hover:text-white shadow-xs active:scale-[0.98] transition-all duration-200 ease-out"
                                     >
                                         Beli
                                     </Link>
@@ -1019,7 +1019,7 @@ export default function Home({ models, appName }) {
                                         onClick={() => {
                                             document.getElementById('features-section')?.scrollIntoView({ behavior: 'smooth' });
                                         }}
-                                        className="inline-flex items-center text-sm font-medium text-white hover:text-white/80 transition-colors underline underline-offset-8 decoration-white/40 hover:decoration-white py-1"
+                                        className="inline-flex items-center text-xs sm:text-[13px] font-medium text-white hover:text-white/80 transition-colors underline underline-offset-8 decoration-white/40 hover:decoration-white py-1"
                                     >
                                         Lebih detail &rsaquo;
                                     </button>
@@ -1032,7 +1032,7 @@ export default function Home({ models, appName }) {
                 {/* SYMMETRICAL 6-COLUMN BENTO GRID (Samsung One UI Aesthetic, Zero AI-Slop) */}
                 <section
                     id="features-section"
-                    className="py-14 sm:py-18 bg-white border-b border-[#E5E5EA] scroll-mt-20"
+                    className="py-10 sm:py-12 bg-white border-b border-[#E5E5EA] scroll-mt-20"
                 >
                     <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
                         <motion.div
@@ -1040,54 +1040,54 @@ export default function Home({ models, appName }) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-center max-w-3xl mx-auto mb-16"
+                            className="text-center max-w-3xl mx-auto mb-10 sm:mb-12"
                         >
-                            <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#86868B]">
+                            <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#86868B]">
                                 Keuntungan Pembelian Resmi
                             </span>
-                            <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#1D1D1F] mt-2">
+                            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#1D1D1F] mt-1.5">
                                 Beli langsung. Dapat lebih banyak.
                             </h2>
-                            <p className="text-base text-[#6E6E73] mt-3">
+                            <p className="text-xs sm:text-sm text-[#6E6E73] mt-2">
                                 Unit bergaransi resmi SEIN dengan jaminan suku cadang nasional, proteksi pengiriman penuh, dan kemudahan pengambilan di Samsung Experience Store.
                             </p>
                         </motion.div>
 
                         {/* Symmetrical 6-Column Grid: Row 1 (4 + 2 = 6), Row 2 (2 + 2 + 2 = 6) with Staggered Entrance */}
-                        <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 sm:gap-4.5">
                             {/* Ubin 1: Galaxy AI (Col span 4) with Official Poster Banner */}
                             <motion.div
                                 initial={{ opacity: 0, y: 28 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.15 }}
                                 transition={{ duration: 0.55, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-4 p-6 sm:p-8 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between overflow-hidden"
+                                className="md:col-span-4 p-5 sm:p-6 rounded-lg bg-[#F5F5F7] flex flex-col justify-between overflow-hidden"
                             >
-                                <div className="grid grid-cols-1 sm:grid-cols-12 gap-8 items-center">
-                                    <div className="sm:col-span-7 space-y-4 text-left">
-                                        <span className="text-xs font-semibold uppercase tracking-wider text-[#0071E3]">
-                                            Galaxy AI Terintegrasi
+                                <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
+                                    <div className="sm:col-span-7 space-y-3 text-left">
+                                        <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0071E3]">
+                                             Galaxy AI Terintegrasi
                                         </span>
-                                        <h3 className="text-2xl sm:text-3xl font-semibold text-[#1D1D1F] tracking-tight">
+                                        <h3 className="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">
                                             Kecerdasan untuk rutinitas harian.
                                         </h3>
-                                        <p className="text-sm text-[#6E6E73] leading-relaxed">
+                                        <p className="text-xs text-[#6E6E73] leading-relaxed">
                                             Galaxy AI didesain untuk menyederhanakan aktivitas Anda, mulai dari pencarian visual instan di layar, terjemahan panggilan langsung, hingga penyempurnaan foto pintar. Seluruh data diproses secara privat dan aman di perangkat Galaxy Anda.
                                         </p>
-                                        <div className="flex flex-wrap gap-2 pt-2">
-                                            <span className="text-xs font-medium text-[#1D1D1F] bg-white px-3 py-1.5 rounded-lg border border-gray-200/80 shadow-2xs">
+                                        <div className="flex flex-wrap gap-1.5 pt-1">
+                                            <span className="text-[11px] font-medium text-[#1D1D1F] bg-white px-2.5 py-1 rounded-md border border-gray-200/80 shadow-2xs">
                                                 Circle to Search with Google
                                             </span>
-                                            <span className="text-xs font-medium text-[#1D1D1F] bg-white px-3 py-1.5 rounded-lg border border-gray-200/80 shadow-2xs">
+                                            <span className="text-[11px] font-medium text-[#1D1D1F] bg-white px-2.5 py-1 rounded-md border border-gray-200/80 shadow-2xs">
                                                 Live Translate
                                             </span>
-                                            <span className="text-xs font-medium text-[#1D1D1F] bg-white px-3 py-1.5 rounded-lg border border-gray-200/80 shadow-2xs">
+                                            <span className="text-[11px] font-medium text-[#1D1D1F] bg-white px-2.5 py-1 rounded-md border border-gray-200/80 shadow-2xs">
                                                 Photo Assist
                                             </span>
                                         </div>
                                     </div>
                                     <div className="sm:col-span-5 flex justify-center">
-                                        <div className="rounded-xl overflow-hidden shadow-xs bg-white w-full max-w-[320px]">
+                                        <div className="rounded-md overflow-hidden shadow-xs bg-white w-full max-w-[280px]">
                                             <img
                                                 src="/images/posters/zfold8-family-banner.webp"
                                                 alt="Galaxy AI Official Poster"
@@ -1098,7 +1098,7 @@ export default function Home({ models, appName }) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="mt-8 pt-6 border-t border-[#E5E5EA] flex flex-wrap items-center justify-between text-xs text-[#86868B] gap-2">
+                                <div className="mt-6 pt-4 border-t border-[#E5E5EA] flex flex-wrap items-center justify-between text-[11px] text-[#86868B] gap-2">
                                     <span>Tersedia standar di lini Galaxy S26 Ultra dan Galaxy Z Fold8</span>
                                     <span className="text-[#0071E3] font-medium">Fitur Resmi Terintegrasi</span>
                                 </div>
@@ -1110,36 +1110,36 @@ export default function Home({ models, appName }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.15 }}
                                 transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-2 p-6 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between"
+                                className="md:col-span-2 p-5 rounded-lg bg-[#F5F5F7] flex flex-col justify-between"
                             >
                                 <div>
-                                    <div className="h-44 flex items-center justify-center gap-5 mb-4">
+                                    <div className="h-36 flex items-center justify-center gap-4 mb-3">
                                         <img
                                             src="/images/products/watch-ultra.webp"
                                             alt="Galaxy Watch Ultra"
-                                            className="h-32 sm:h-36 object-contain drop-shadow-sm"
+                                            className="h-28 sm:h-32 object-contain drop-shadow-sm"
                                             loading="lazy"
                                             decoding="async"
                                         />
                                         <img
                                             src="/images/products/buds3-pro.webp"
                                             alt="Galaxy Buds3 Pro"
-                                            className="h-28 sm:h-30 object-contain drop-shadow-sm"
+                                            className="h-24 sm:h-26 object-contain drop-shadow-sm"
                                             loading="lazy"
                                             decoding="async"
                                         />
                                     </div>
-                                    <span className="text-xs font-semibold uppercase tracking-wider text-[#0071E3]">
+                                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0071E3]">
                                         Ekosistem Terhubung
                                     </span>
-                                    <h3 className="text-xl font-semibold text-[#1D1D1F] mt-1 tracking-tight">
+                                    <h3 className="text-base font-bold text-[#1D1D1F] mt-0.5 tracking-tight">
                                         Watch Ultra &amp; Buds3 Pro
                                     </h3>
-                                    <p className="text-xs text-[#6E6E73] mt-2 leading-relaxed">
+                                    <p className="text-xs text-[#6E6E73] mt-1.5 leading-relaxed">
                                         Sinkronisasi instan sensor kesehatan presisi dan audio fidelitas 24-bit tanpa jeda untuk menemani mobilitas harian Anda.
                                     </p>
                                 </div>
-                                <div className="mt-8 pt-4 border-t border-[#E5E5EA] flex items-center justify-between text-xs font-medium">
+                                <div className="mt-6 pt-3.5 border-t border-[#E5E5EA] flex items-center justify-between text-xs font-medium">
                                     <span className="text-[#86868B]">Mulai Rp 3.299.000</span>
                                     <button
                                         type="button"
@@ -1159,25 +1159,25 @@ export default function Home({ models, appName }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.15 }}
                                 transition={{ duration: 0.55, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-2 p-6 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
+                                className="md:col-span-2 p-5 rounded-lg bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
                             >
                                 <div>
-                                    <div className="w-12 h-12 rounded-xl bg-[#EDF4FE] text-[#0071E3] flex items-center justify-center mb-6">
-                                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                                    <div className="w-9 h-9 rounded-md bg-[#EDF4FE] text-[#0071E3] flex items-center justify-center mb-4">
+                                        <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                                         </svg>
                                     </div>
-                                    <span className="text-xs font-semibold uppercase tracking-wider text-[#0071E3]">
+                                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0071E3]">
                                         100% Unit Asli SEIN
                                     </span>
-                                    <h3 className="text-xl font-semibold text-[#1D1D1F] mt-1 tracking-tight">
+                                    <h3 className="text-base font-bold text-[#1D1D1F] mt-0.5 tracking-tight">
                                         Garansi Resmi SEIN 1 Tahun
                                     </h3>
-                                    <p className="text-xs text-[#6E6E73] mt-2 leading-relaxed">
+                                    <p className="text-xs text-[#6E6E73] mt-1.5 leading-relaxed">
                                         Perlindungan suku cadang resmi di 100+ Samsung Service Center nasional dengan nomor IMEI terverifikasi di Kemenperin.
                                     </p>
                                 </div>
-                                <div className="mt-8 pt-4 border-t border-[#E5E5EA] flex items-center justify-between text-xs font-medium">
+                                <div className="mt-6 pt-3.5 border-t border-[#E5E5EA] flex items-center justify-between text-xs font-medium">
                                     <span className="text-[#86868B]">100+ Service Center</span>
                                     <button
                                         type="button"
@@ -1197,25 +1197,25 @@ export default function Home({ models, appName }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.15 }}
                                 transition={{ duration: 0.55, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-2 p-6 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
+                                className="md:col-span-2 p-5 rounded-lg bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
                             >
                                 <div>
-                                    <div className="w-12 h-12 rounded-xl bg-[#EDF4FE] text-[#0071E3] flex items-center justify-center mb-6">
-                                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                                    <div className="w-9 h-9 rounded-md bg-[#EDF4FE] text-[#0071E3] flex items-center justify-center mb-4">
+                                        <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.614A2.996 2.996 0 009.75 9.35c.83 0 1.6-.337 2.164-.89a3 3 0 004.336.002c.563.551 1.333.888 2.162.888a3.001 3.001 0 003.75-.614V3.75a.75.75 0 00-.75-.75H2.612a.75.75 0 00-.75.75v5.6z" />
                                         </svg>
                                     </div>
-                                    <span className="text-xs font-semibold uppercase tracking-wider text-[#0071E3]">
+                                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0071E3]">
                                         Ambil di Mall Favorit
                                     </span>
-                                    <h3 className="text-xl font-semibold text-[#1D1D1F] mt-1 tracking-tight">
+                                    <h3 className="text-base font-bold text-[#1D1D1F] mt-0.5 tracking-tight">
                                         Siap Diambil dalam 2 Jam
                                     </h3>
-                                    <p className="text-xs text-[#6E6E73] mt-2 leading-relaxed">
+                                    <p className="text-xs text-[#6E6E73] mt-1.5 leading-relaxed">
                                         Pesan secara online dan ambil unit baru Anda langsung di gerai Samsung Experience Store mall terkemuka tanpa antre.
                                     </p>
                                 </div>
-                                <div className="mt-8 pt-4 border-t border-[#E5E5EA] flex items-center justify-between text-xs font-medium">
+                                <div className="mt-6 pt-3.5 border-t border-[#E5E5EA] flex items-center justify-between text-xs font-medium">
                                     <span className="text-[#86868B]">8 Mall Flagship</span>
                                     <button
                                         type="button"
@@ -1235,25 +1235,25 @@ export default function Home({ models, appName }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.15 }}
                                 transition={{ duration: 0.55, delay: 0.30, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-2 p-6 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
+                                className="md:col-span-2 p-5 rounded-lg bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
                             >
                                 <div>
-                                    <div className="w-12 h-12 rounded-xl bg-[#EDF4FE] text-[#0071E3] flex items-center justify-center mb-6">
-                                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                                    <div className="w-9 h-9 rounded-md bg-[#EDF4FE] text-[#0071E3] flex items-center justify-center mb-4">
+                                        <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.25V4.5a1.5 1.5 0 00-1.5-1.5H5.25A1.5 1.5 0 003.75 4.5v9.75m10.5-6.75h4.875c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125H14.25m-4.5-1.5l2.25 2.25 3.75-3.75" />
                                         </svg>
                                     </div>
-                                    <span className="text-xs font-semibold uppercase tracking-wider text-[#0071E3]">
+                                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0071E3]">
                                         Tukar Tambah &amp; Proteksi
                                     </span>
-                                    <h3 className="text-xl font-semibold text-[#1D1D1F] mt-1 tracking-tight">
+                                    <h3 className="text-base font-bold text-[#1D1D1F] mt-0.5 tracking-tight">
                                         Pengiriman Aman &amp; Proteksi 100%
                                     </h3>
-                                    <p className="text-xs text-[#6E6E73] mt-2 leading-relaxed">
+                                    <p className="text-xs text-[#6E6E73] mt-1.5 leading-relaxed">
                                         Tukar smartphone lama dengan estimasi nilai instan, serta pengiriman khusus kemasan kayu bersegel dengan perlindungan asuransi penuh.
                                     </p>
                                 </div>
-                                <div className="mt-8 pt-4 border-t border-[#E5E5EA] flex items-center justify-between text-xs font-medium">
+                                <div className="mt-6 pt-3.5 border-t border-[#E5E5EA] flex items-center justify-between text-xs font-medium">
                                     <span className="text-[#86868B]">Kemasan Bersegel</span>
                                     <button
                                         type="button"
@@ -1271,7 +1271,7 @@ export default function Home({ models, appName }) {
                 </section>
 
                 {/* OFFICIAL GALAXY ECOSYSTEM RECOMMENDATION CAROUSEL */}
-                <section id="carousel-section" className="py-10 sm:py-12 bg-[#F8F9FA] overflow-hidden">
+                <section id="carousel-section" className="py-8 sm:py-10 bg-[#F8F9FA] overflow-hidden">
                     {/* Section Header with Top-Right Navigation Arrows (Aligned with max-w-7xl grid) */}
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
@@ -1279,13 +1279,13 @@ export default function Home({ models, appName }) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                            className="flex items-end justify-between mb-8 sm:mb-10"
+                            className="flex items-end justify-between mb-6 sm:mb-7"
                         >
                             <div>
-                                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">
+                                <h2 className="text-lg sm:text-xl font-bold tracking-tight text-gray-900">
                                     Eksplorasi Perangkat Galaxy Resmi
                                 </h2>
-                                <p className="text-sm sm:text-base text-gray-500 mt-1">
+                                <p className="text-xs text-gray-500 mt-0.5">
                                     Pilih smartphone, tablet, atau aksesoris resmi bergaransi SEIN 1 tahun.
                                 </p>
                             </div>
@@ -1297,9 +1297,9 @@ export default function Home({ models, appName }) {
                                     onClick={() => scrollCarousel('left')}
                                     disabled={!canScrollLeft}
                                     aria-label="Gulir ke kiri"
-                                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-200 bg-white shadow-xs flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:text-gray-900 active:scale-95 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                                    className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full border border-gray-200 bg-white shadow-2xs flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:text-gray-900 active:scale-95 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                                 >
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                                     </svg>
                                 </button>
@@ -1308,9 +1308,9 @@ export default function Home({ models, appName }) {
                                     onClick={() => scrollCarousel('right')}
                                     disabled={!canScrollRight}
                                     aria-label="Gulir ke kanan"
-                                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-200 bg-white shadow-xs flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:text-gray-900 active:scale-95 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                                    className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full border border-gray-200 bg-white shadow-2xs flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:text-gray-900 active:scale-95 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                                 >
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                     </svg>
                                 </button>
@@ -1322,7 +1322,7 @@ export default function Home({ models, appName }) {
                     <div
                         ref={carouselRef}
                         onScroll={updateCarouselStatus}
-                        className="w-full flex items-stretch gap-4 sm:gap-5 overflow-x-auto pt-2 pb-6 scrollbar-none scroll-smooth snap-x snap-mandatory carousel-track-gutter"
+                        className="w-full flex items-stretch gap-3.5 sm:gap-4 overflow-x-auto pt-1 pb-5 scrollbar-none scroll-smooth snap-x snap-mandatory carousel-track-gutter"
                         style={{
                             scrollbarWidth: 'none',
                             msOverflowStyle: 'none',
@@ -1339,11 +1339,11 @@ export default function Home({ models, appName }) {
                             >
                                 <Link
                                     href={product.link}
-                                    className="relative w-[72vw] sm:w-[240px] md:w-[248px] lg:w-[248px] xl:w-[248px] h-[400px] sm:h-[416px] rounded-3xl bg-white p-5 sm:p-6 flex flex-col justify-between border border-gray-100 shadow-xs hover:shadow-md transition-shadow duration-200 group cursor-pointer block"
+                                    className="relative w-[68vw] sm:w-[216px] md:w-[224px] lg:w-[224px] xl:w-[224px] h-[340px] sm:h-[352px] rounded-lg bg-white p-3.5 sm:p-4 flex flex-col justify-between border border-gray-100 shadow-2xs hover:shadow-sm transition-shadow duration-200 group cursor-pointer block"
                                 >
                                     <div>
                                         {/* Large Product Image Centered */}
-                                        <div className="py-2 flex items-center justify-center h-44 sm:h-48 w-full overflow-hidden">
+                                        <div className="py-1 flex items-center justify-center h-32 sm:h-36 w-full overflow-hidden">
                                             <img
                                                 src={product.image}
                                                 alt={product.name}
@@ -1354,27 +1354,27 @@ export default function Home({ models, appName }) {
                                         </div>
 
                                         {/* Product Name & Subtitle */}
-                                        <div className="mt-2">
-                                            <h3 className="text-base sm:text-lg font-bold text-gray-900 tracking-tight line-clamp-1">
+                                        <div className="mt-1.5">
+                                            <h3 className="text-xs sm:text-sm font-bold text-gray-900 tracking-tight line-clamp-1">
                                                 {product.name}
                                             </h3>
-                                            <p className="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed min-h-[2.5rem]">
+                                            <p className="text-[11px] text-gray-500 mt-0.5 line-clamp-2 leading-normal min-h-[1.75rem]">
                                                 {product.subtitle}
                                             </p>
                                         </div>
                                     </div>
 
                                     {/* Visible Divider Line & Non-Bold Price */}
-                                    <div className="mt-4 pt-3.5 flex items-end justify-between border-t border-gray-100">
+                                    <div className="mt-3 pt-2.5 flex items-end justify-between border-t border-gray-100">
                                         <div>
-                                            <span className="block text-[11px] text-gray-400 font-normal">
+                                            <span className="block text-[10px] text-gray-400 font-normal">
                                                 Harga Resmi
                                             </span>
-                                            <span className="text-sm sm:text-base font-normal text-gray-900 leading-tight block">
+                                            <span className="text-xs sm:text-[13px] font-normal text-gray-900 leading-tight block">
                                                 {formatRupiah(product.price)}
                                             </span>
                                         </div>
-                                        <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-[#0071E3] hover:bg-[#005bb5] text-white text-xs font-medium tracking-tight shadow-xs transition-colors duration-150">
+                                        <span className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-[#0071E3] hover:bg-[#005bb5] text-white text-[11px] font-medium tracking-tight shadow-2xs transition-colors duration-150">
                                             Beli
                                         </span>
                                     </div>
