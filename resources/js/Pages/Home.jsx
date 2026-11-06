@@ -191,89 +191,33 @@ export default function Home({ models, appName }) {
     const s26Model = models?.find((m) => m.id === 'samsung-galaxy-s26-ultra') || models?.[0];
     const foldModel = models?.find((m) => m.id === 'samsung-galaxy-z-fold8') || models?.[1];
 
-    // Scroll-triggered subtle parallax refs for Showcase banners (100% additive, non-breaking)
-    const s26SectionRef = useRef(null);
+    // Official Samsung Hero Card Shrink Scroll Animation refs
+    const heroTrackRef = useRef(null);
     const foldSectionRef = useRef(null);
 
-    // Dynamic Hero Cover-to-Fixed-Header Scroll Animation (Bramus Demo + Samsung Floating Header)
-    const [heroHeight, setHeroHeight] = useState(640);
-    const [activeProduct, setActiveProduct] = useState('s26');
-
-    useEffect(() => {
-        const updateHeroHeight = () => {
-            const calculated = Math.min(Math.max(window.innerHeight - 64, 520), 680);
-            setHeroHeight(calculated);
-        };
-        updateHeroHeight();
-        window.addEventListener('resize', updateHeroHeight);
-        return () => window.removeEventListener('resize', updateHeroHeight);
-    }, []);
-
-    const { scrollY } = useScroll();
-    const collapseDistance = Math.max(heroHeight - 60, 200);
-
-    // Height transforms smoothly from heroHeight down to 60px as user scrolls from 0 to collapseDistance
-    const heroCoverHeight = useTransform(
-        scrollY,
-        [0, collapseDistance],
-        [heroHeight, 60],
-        { clamp: true }
-    );
-
-    // Hero banner & expanded CTA fade away as the cover collapses
-    const heroExpandedOpacity = useTransform(
-        scrollY,
-        [0, collapseDistance * 0.55],
-        [1, 0],
-        { clamp: true }
-    );
-
-    // Fixed product header bar fades in as the cover docks
-    const fixedHeaderOpacity = useTransform(
-        scrollY,
-        [collapseDistance * 0.45, collapseDistance * 0.95],
-        [0, 1],
-        { clamp: true }
-    );
-
-    // Dynamic background transition: from cinematic poster to sleek dark glass
-    const fixedHeaderBg = useTransform(
-        scrollY,
-        [0, collapseDistance],
-        ['rgba(18, 16, 30, 1)', 'rgba(18, 16, 30, 0.94)'],
-        { clamp: true }
-    );
-
-    // Interactive pointer event switching between expanded hero and docked header
-    const heroPointerEvents = useTransform(
-        scrollY,
-        (v) => (v > collapseDistance * 0.5 ? 'none' : 'auto')
-    );
-    const fixedHeaderPointerEvents = useTransform(
-        scrollY,
-        (v) => (v > collapseDistance * 0.4 ? 'auto' : 'none')
-    );
-
-    // Contextual active product tracking (S26 Ultra vs Z Fold8)
-    useEffect(() => {
-        const handleProductIntersection = () => {
-            if (!foldSectionRef.current) return;
-            const rect = foldSectionRef.current.getBoundingClientRect();
-            if (rect.top <= 200 && rect.bottom >= 120) {
-                setActiveProduct('fold8');
-            } else if (rect.top > 200) {
-                setActiveProduct('s26');
-            }
-        };
-        window.addEventListener('scroll', handleProductIntersection, { passive: true });
-        return () => window.removeEventListener('scroll', handleProductIntersection);
-    }, []);
-
-    const { scrollYProgress: s26ScrollProgress } = useScroll({
-        target: s26SectionRef,
-        offset: ['start end', 'end start'],
+    // Scroll progress through the Hero Track:
+    // As user scrolls from 0 to 0.7, the card shrinks from full-bleed to rounded floating card
+    const { scrollYProgress: heroProgress } = useScroll({
+        target: heroTrackRef,
+        offset: ['start start', 'end start'],
     });
-    const s26ImageY = useTransform(s26ScrollProgress, [0, 1], ['-3%', '3%']);
+
+    // Card scale: 1 (full bleed edge-to-edge) down to 0.95 (revealing white borders on left & right)
+    const heroCardScale = useTransform(heroProgress, [0, 0.7], [1, 0.95], { clamp: true });
+
+    // Border radius: 0px (edge-to-edge) smoothly rounds to 28px (Samsung signature rounded card)
+    const heroCardRadius = useTransform(heroProgress, [0, 0.7], ['0px', '28px'], { clamp: true });
+
+    // Elevation shadow as it shrinks into a card
+    const heroCardShadow = useTransform(
+        heroProgress,
+        [0, 0.7],
+        ['0 0 0 rgba(0,0,0,0)', '0 20px 50px -12px rgba(0,0,0,0.22)'],
+        { clamp: true }
+    );
+
+    // Subtle parallax depth for hero image
+    const s26ImageY = useTransform(heroProgress, [0, 1], ['-2%', '3%']);
 
     const { scrollYProgress: foldScrollProgress } = useScroll({
         target: foldSectionRef,
@@ -289,12 +233,12 @@ export default function Home({ models, appName }) {
 
             setIsScrolled(currentScrollY > 20);
 
-            // Always show navbar when near the very top of the page
-            if (currentScrollY < 50) {
+            // Keep navbar visible while hero card is in view and shrinking (up to 140px)
+            if (currentScrollY < 140) {
                 setIsNavVisible(true);
             } 
-            // Hide when scrolling down past 80px by more than 8px
-            else if (diff > 8 && currentScrollY > 80) {
+            // Hide when scrolling down past the hero shrink zone by more than 8px
+            else if (diff > 8 && currentScrollY > 140) {
                 if (!activeMenuId) {
                     setIsNavVisible(false);
                 }
@@ -952,171 +896,87 @@ export default function Home({ models, appName }) {
             {/* Main Discovery Content */}
             <main>
 
-                {/* Cover Card to Fixed Header (Bramus Scroll-Driven Animation + Samsung Floating Header Pattern) */}
-                <motion.section
-                    aria-label="Samsung Galaxy S26 Ultra Showcase & Navigasi Produk"
-                    className="fixed top-0 left-0 right-0 z-40 overflow-hidden text-white will-change-[height]"
-                    style={{
-                        height: heroCoverHeight,
-                        backgroundColor: fixedHeaderBg,
-                    }}
+                {/* Official Samsung Hero Showcase: Edge-to-Edge Card Shrinking to Rounded Floating Card on Scroll */}
+                <div
+                    id="s26-ultra-section"
+                    ref={heroTrackRef}
+                    className="relative w-full bg-white"
+                    style={{ height: 'calc(100vh + 180px)' }}
                 >
-                    {/* EXPANDED HERO LAYER (Full Cinema Canvas, fades & shrinks into fixed header) */}
-                    <motion.div
-                        style={{
-                            opacity: heroExpandedOpacity,
-                            pointerEvents: heroPointerEvents,
-                        }}
-                        className="absolute inset-0 w-full h-full pt-16 overflow-hidden"
-                    >
-                        {/* Background Hero Banner Image with Parallax Depth */}
-                        <motion.div
-                            style={{ y: s26ImageY }}
-                            className="absolute inset-0 w-full h-full scale-[1.06] will-change-transform"
-                        >
-                            <picture className="w-full h-full block">
-                                <source media="(max-width: 767px)" srcSet="/images/posters/s26-ultra-official-poster-mo.webp" type="image/webp" />
-                                <source media="(max-width: 767px)" srcSet="/images/posters/s26-ultra-official-poster-mo.jpg" />
-                                <source media="(min-width: 768px)" srcSet="/images/posters/s26-ultra-official-poster.webp" type="image/webp" />
-                                <img
-                                    src="/images/posters/s26-ultra-official-poster.jpg"
-                                    alt="Samsung Galaxy S26 Ultra 5G - Galaxy AI Resmi SEIN"
-                                    className="w-full h-full object-cover md:object-fill select-none pointer-events-none"
-                                    fetchPriority="high"
-                                    decoding="async"
-                                />
-                            </picture>
-                        </motion.div>
-
-                        {/* Negative Space Overlaid Hero Content */}
-                        <div className="absolute inset-0 z-10 flex flex-col justify-end px-6 sm:px-12 lg:px-20 pb-8 sm:pb-12 lg:pb-16 pointer-events-none">
+                    <div className="sticky top-16 w-full pt-1 sm:pt-2">
+                        <div className="w-full overflow-hidden">
                             <motion.div
-                                initial={{ opacity: 0, y: 22 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.25 }}
-                                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                                className="max-w-md lg:max-w-lg space-y-3 pointer-events-auto"
+                                style={{
+                                    scale: heroCardScale,
+                                    borderRadius: heroCardRadius,
+                                    boxShadow: heroCardShadow,
+                                }}
+                                className="relative w-full aspect-[720/1080] md:aspect-[1440/640] max-h-[720px] overflow-hidden bg-[#0c1022] origin-center will-change-transform"
                             >
-                                <h1 className="sr-only">Samsung Galaxy S26 Ultra 5G - Galaxy AI</h1>
+                                {/* Background Hero Banner Image with Parallax Depth */}
+                                <motion.div
+                                    style={{ y: s26ImageY }}
+                                    className="absolute inset-0 w-full h-full scale-[1.06] will-change-transform"
+                                >
+                                    <picture className="w-full h-full block">
+                                        <source media="(max-width: 767px)" srcSet="/images/posters/s26-ultra-official-poster-mo.webp" type="image/webp" />
+                                        <source media="(max-width: 767px)" srcSet="/images/posters/s26-ultra-official-poster-mo.jpg" />
+                                        <source media="(min-width: 768px)" srcSet="/images/posters/s26-ultra-official-poster.webp" type="image/webp" />
+                                        <img
+                                            src="/images/posters/s26-ultra-official-poster.jpg"
+                                            alt="Samsung Galaxy S26 Ultra 5G - Galaxy AI Resmi SEIN"
+                                            className="w-full h-full object-cover md:object-fill select-none pointer-events-none"
+                                            fetchPriority="high"
+                                            decoding="async"
+                                        />
+                                    </picture>
+                                </motion.div>
 
-                                <p className="text-white/85 text-sm sm:text-base font-normal tracking-normal leading-relaxed drop-shadow-sm">
-                                    Mulai dari <span className="text-white font-semibold">{formatRupiah(s26Model?.starting_price || 21999000)}</span> atau cicilan 0% hingga 24 bulan.
-                                </p>
+                                {/* Negative Space Overlaid Hero Content */}
+                                <div className="absolute inset-0 z-10 flex flex-col justify-end px-6 sm:px-12 lg:px-20 pb-8 sm:pb-12 lg:pb-16 pointer-events-none">
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 16 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                                        className="max-w-md lg:max-w-lg space-y-3 pointer-events-auto"
+                                    >
+                                        <h1 className="sr-only">Samsung Galaxy S26 Ultra 5G - Galaxy AI</h1>
 
-                                <div className="pt-1 flex items-center gap-5">
-                                    <Link
-                                        href="/buy/samsung-galaxy-s26-ultra"
-                                        className="inline-flex items-center justify-center text-sm font-semibold px-7 py-2.5 rounded-full bg-white text-gray-900 hover:bg-[#0071E3] hover:text-white shadow-sm active:scale-[0.98] transition-all duration-200 ease-out cursor-pointer"
-                                    >
-                                        Beli
-                                    </Link>
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            document.getElementById('z-fold8-section')?.scrollIntoView({ behavior: 'smooth' });
-                                        }}
-                                        className="inline-flex items-center text-sm font-medium text-white hover:text-white/80 transition-colors underline underline-offset-8 decoration-white/40 hover:decoration-white py-1 cursor-pointer"
-                                    >
-                                        Lebih detail &rsaquo;
-                                    </button>
+                                        <p className="text-white/85 text-sm sm:text-base font-normal tracking-normal leading-relaxed drop-shadow-sm">
+                                            Mulai dari <span className="text-white font-semibold">{formatRupiah(s26Model?.starting_price || 21999000)}</span> atau cicilan 0% hingga 24 bulan.
+                                        </p>
+
+                                        <div className="pt-1 flex items-center gap-5">
+                                            <Link
+                                                href="/buy/samsung-galaxy-s26-ultra"
+                                                className="inline-flex items-center justify-center text-sm font-semibold px-7 py-2.5 rounded-full bg-white text-gray-900 hover:bg-[#0071E3] hover:text-white shadow-sm active:scale-[0.98] transition-all duration-200 ease-out cursor-pointer"
+                                            >
+                                                Beli
+                                            </Link>
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    document.getElementById('z-fold8-section')?.scrollIntoView({ behavior: 'smooth' });
+                                                }}
+                                                className="inline-flex items-center text-sm font-medium text-white hover:text-white/80 transition-colors underline underline-offset-8 decoration-white/40 hover:decoration-white py-1 cursor-pointer"
+                                            >
+                                                Lebih detail &rsaquo;
+                                            </button>
+                                        </div>
+                                    </motion.div>
                                 </div>
                             </motion.div>
                         </div>
-                    </motion.div>
-
-                    {/* COLLAPSED SAMSUNG FLOATING PRODUCT NAVIGATION BAR LAYER */}
-                    <motion.div
-                        style={{
-                            opacity: fixedHeaderOpacity,
-                            pointerEvents: fixedHeaderPointerEvents,
-                        }}
-                        className="absolute inset-0 w-full h-[60px] flex items-center border-b border-white/10 backdrop-blur-md z-20"
-                    >
-                        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 flex items-center justify-between">
-                            {/* Left: Product Headline + Galaxy AI Badge */}
-                            <div className="flex items-center gap-2.5">
-                                <span className="text-sm sm:text-base font-semibold tracking-tight text-white flex items-center">
-                                    {activeProduct === 's26' ? 'Galaxy S26 Ultra 5G' : 'Galaxy Z Fold8 5G'}
-                                </span>
-                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-purple-500/20 border border-blue-400/35 text-[10px] font-bold tracking-wider text-blue-300 uppercase shadow-2xs">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-                                    Galaxy AI
-                                </span>
-                            </div>
-
-                            {/* Center: Quick Anchor Tabs (Desktop) */}
-                            <nav className="hidden lg:flex items-center gap-7 text-xs sm:text-sm font-medium text-white/70">
-                                <button
-                                    type="button"
-                                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                    className={`transition-colors hover:text-white cursor-pointer ${
-                                        activeProduct === 's26' ? 'text-white font-semibold' : ''
-                                    }`}
-                                >
-                                    Galaxy S26 Ultra
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => document.getElementById('z-fold8-section')?.scrollIntoView({ behavior: 'smooth' })}
-                                    className={`transition-colors hover:text-white cursor-pointer ${
-                                        activeProduct === 'fold8' ? 'text-white font-semibold' : ''
-                                    }`}
-                                >
-                                    Galaxy Z Fold8
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => document.getElementById('features-section')?.scrollIntoView({ behavior: 'smooth' })}
-                                    className="transition-colors hover:text-white cursor-pointer"
-                                >
-                                    Fitur Unggulan
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => document.getElementById('carousel-section')?.scrollIntoView({ behavior: 'smooth' })}
-                                    className="transition-colors hover:text-white cursor-pointer"
-                                >
-                                    Ekosistem
-                                </button>
-                            </nav>
-
-                            {/* Right: Price & CTA Button */}
-                            <div className="flex items-center gap-3 sm:gap-5">
-                                <div className="text-right hidden sm:block">
-                                    <span className="text-[10px] text-white/50 block leading-tight">Harga Resmi</span>
-                                    <span className="text-xs sm:text-sm font-semibold text-white">
-                                        {activeProduct === 's26'
-                                            ? formatRupiah(s26Model?.starting_price || 21999000)
-                                            : formatRupiah(foldModel?.starting_price || 26999000)}
-                                    </span>
-                                </div>
-                                <Link
-                                    href={activeProduct === 's26' ? '/buy/samsung-galaxy-s26-ultra' : '/buy/samsung-galaxy-z-fold8'}
-                                    className="inline-flex items-center justify-center text-xs sm:text-sm font-semibold px-5 sm:px-6 py-2 rounded-full bg-white text-gray-950 hover:bg-[#0071E3] hover:text-white transition-all duration-150 shadow-sm active:scale-95 cursor-pointer"
-                                >
-                                    Beli
-                                </Link>
-                            </div>
-                        </div>
-                    </motion.div>
-                </motion.section>
-
-                {/* Hero Scroll Spacer Track: Holds physical document height so content scrolls seamlessly */}
-                <div
-                    id="s26-ultra-section"
-                    ref={s26SectionRef}
-                    className="w-full relative overflow-hidden scroll-mt-16 pointer-events-none"
-                    style={{ height: `${heroHeight}px` }}
-                    aria-hidden="true"
-                />
+                    </div>
+                </div>
 
                 {/* FULLPAGE GALAXY Z FOLD8 SHOWCASE (Official Samsung Keynote Canvas) */}
                 <section
                     id="z-fold8-section"
                     ref={foldSectionRef}
-                    className="relative w-full bg-[#1b1527] text-white overflow-hidden scroll-mt-14 mb-3 sm:mb-4 lg:mb-6"
+                    className="relative w-full px-3 sm:px-6 lg:px-8 max-w-[1720px] mx-auto scroll-mt-20 mb-6 sm:mb-8 lg:mb-12"
                 >
-                    <div className="relative w-full aspect-[720/1080] md:aspect-[1440/640] max-h-[720px] mx-auto overflow-hidden">
+                    <div className="relative w-full aspect-[720/1080] md:aspect-[1440/640] max-h-[720px] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#1b1527] shadow-xl">
                         {/* Background Hero Banner - Responsive Picture with Subtle Cinematic Parallax */}
                         <motion.div
                             style={{ y: foldImageY }}
