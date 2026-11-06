@@ -180,7 +180,7 @@ export default function Buy({
                         </div>
 
                         {/* Device Vector Mockup */}
-                        <div className="relative w-full max-w-md h-[420px] sm:h-[480px] flex items-center justify-center p-4">
+                        <div className="relative w-full max-w-md h-[360px] sm:h-[420px] flex items-center justify-center p-4">
                             <img
                                 src={viewAngle === 'back' ? selectedVariant?.image_url : frontImage}
                                 alt={`${productName} - ${selectedVariant?.color_name}`}

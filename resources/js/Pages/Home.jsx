@@ -202,16 +202,13 @@ export default function Home({ models, appName }) {
         offset: ['start start', 'end start'],
     });
 
-    // Card scale: 1 (full bleed edge-to-edge) down to 0.95 (revealing white borders on left & right)
-    const heroCardScale = useTransform(heroProgress, [0, 0.7], [1, 0.95], { clamp: true });
-
-    // Border radius: 0px (edge-to-edge) smoothly rounds to 28px (Samsung signature rounded card)
-    const heroCardRadius = useTransform(heroProgress, [0, 0.7], ['0px', '28px'], { clamp: true });
+    // Card scale: 1 (full bleed edge-to-edge) down to 0.94 (revealing white borders on left & right, slower over full scroll)
+    const heroCardScale = useTransform(heroProgress, [0, 1], [1, 0.94], { clamp: true });
 
     // Elevation shadow as it shrinks into a card
     const heroCardShadow = useTransform(
         heroProgress,
-        [0, 0.7],
+        [0, 1],
         ['0 0 0 rgba(0,0,0,0)', '0 20px 50px -12px rgba(0,0,0,0.22)'],
         { clamp: true }
     );
@@ -901,17 +898,16 @@ export default function Home({ models, appName }) {
                     id="s26-ultra-section"
                     ref={heroTrackRef}
                     className="relative w-full bg-white"
-                    style={{ height: 'calc(100vh + 180px)' }}
+                    style={{ height: 'calc(100vh + 400px)' }}
                 >
-                    <div className="sticky top-16 w-full pt-1 sm:pt-2">
+                    <div className="sticky top-16 w-full">
                         <div className="w-full overflow-hidden">
                             <motion.div
                                 style={{
                                     scale: heroCardScale,
-                                    borderRadius: heroCardRadius,
                                     boxShadow: heroCardShadow,
                                 }}
-                                className="relative w-full aspect-[720/1080] md:aspect-[1440/640] max-h-[720px] overflow-hidden bg-[#0c1022] origin-center will-change-transform"
+                                className="relative w-full h-[calc(100vh-64px)] overflow-hidden bg-[#0c1022] origin-center will-change-transform"
                             >
                                 {/* Background Hero Banner Image with Parallax Depth */}
                                 <motion.div
@@ -925,7 +921,7 @@ export default function Home({ models, appName }) {
                                         <img
                                             src="/images/posters/s26-ultra-official-poster.jpg"
                                             alt="Samsung Galaxy S26 Ultra 5G - Galaxy AI Resmi SEIN"
-                                            className="w-full h-full object-cover md:object-fill select-none pointer-events-none"
+                                            className="w-full h-full object-cover select-none pointer-events-none"
                                             fetchPriority="high"
                                             decoding="async"
                                         />
@@ -1036,7 +1032,7 @@ export default function Home({ models, appName }) {
                 {/* SYMMETRICAL 6-COLUMN BENTO GRID (Samsung One UI Aesthetic, Zero AI-Slop) */}
                 <section
                     id="features-section"
-                    className="py-20 sm:py-24 bg-white border-b border-[#E5E5EA] scroll-mt-20"
+                    className="py-14 sm:py-18 bg-white border-b border-[#E5E5EA] scroll-mt-20"
                 >
                     <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
                         <motion.div
@@ -1049,7 +1045,7 @@ export default function Home({ models, appName }) {
                             <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#86868B]">
                                 Keuntungan Pembelian Resmi
                             </span>
-                            <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-[#1D1D1F] mt-2">
+                            <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-[#1D1D1F] mt-2">
                                 Beli langsung. Dapat lebih banyak.
                             </h2>
                             <p className="text-base text-[#6E6E73] mt-3">
@@ -1065,7 +1061,7 @@ export default function Home({ models, appName }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.15 }}
                                 transition={{ duration: 0.55, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-4 p-8 sm:p-10 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between overflow-hidden"
+                                className="md:col-span-4 p-6 sm:p-8 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between overflow-hidden"
                             >
                                 <div className="grid grid-cols-1 sm:grid-cols-12 gap-8 items-center">
                                     <div className="sm:col-span-7 space-y-4 text-left">
@@ -1114,7 +1110,7 @@ export default function Home({ models, appName }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.15 }}
                                 transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-2 p-8 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between"
+                                className="md:col-span-2 p-6 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between"
                             >
                                 <div>
                                     <div className="h-44 flex items-center justify-center gap-5 mb-4">
@@ -1163,7 +1159,7 @@ export default function Home({ models, appName }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.15 }}
                                 transition={{ duration: 0.55, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-2 p-8 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
+                                className="md:col-span-2 p-6 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
                             >
                                 <div>
                                     <div className="w-12 h-12 rounded-xl bg-[#EDF4FE] text-[#0071E3] flex items-center justify-center mb-6">
@@ -1201,7 +1197,7 @@ export default function Home({ models, appName }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.15 }}
                                 transition={{ duration: 0.55, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-2 p-8 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
+                                className="md:col-span-2 p-6 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
                             >
                                 <div>
                                     <div className="w-12 h-12 rounded-xl bg-[#EDF4FE] text-[#0071E3] flex items-center justify-center mb-6">
@@ -1239,7 +1235,7 @@ export default function Home({ models, appName }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.15 }}
                                 transition={{ duration: 0.55, delay: 0.30, ease: [0.16, 1, 0.3, 1] }}
-                                className="md:col-span-2 p-8 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
+                                className="md:col-span-2 p-6 rounded-2xl bg-[#F5F5F7] flex flex-col justify-between hover:bg-[#F0F2F5] transition-colors duration-200"
                             >
                                 <div>
                                     <div className="w-12 h-12 rounded-xl bg-[#EDF4FE] text-[#0071E3] flex items-center justify-center mb-6">
@@ -1275,7 +1271,7 @@ export default function Home({ models, appName }) {
                 </section>
 
                 {/* OFFICIAL GALAXY ECOSYSTEM RECOMMENDATION CAROUSEL */}
-                <section id="carousel-section" className="py-14 sm:py-16 bg-[#F8F9FA] overflow-hidden">
+                <section id="carousel-section" className="py-10 sm:py-12 bg-[#F8F9FA] overflow-hidden">
                     {/* Section Header with Top-Right Navigation Arrows (Aligned with max-w-7xl grid) */}
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div
@@ -1343,11 +1339,11 @@ export default function Home({ models, appName }) {
                             >
                                 <Link
                                     href={product.link}
-                                    className="relative w-[80vw] sm:w-[280px] md:w-[290px] lg:w-[290px] xl:w-[290px] h-[465px] sm:h-[485px] rounded-3xl bg-white p-5 sm:p-6 flex flex-col justify-between border border-gray-100 shadow-xs hover:shadow-md transition-shadow duration-200 group cursor-pointer block"
+                                    className="relative w-[72vw] sm:w-[240px] md:w-[248px] lg:w-[248px] xl:w-[248px] h-[400px] sm:h-[416px] rounded-3xl bg-white p-5 sm:p-6 flex flex-col justify-between border border-gray-100 shadow-xs hover:shadow-md transition-shadow duration-200 group cursor-pointer block"
                                 >
                                     <div>
                                         {/* Large Product Image Centered */}
-                                        <div className="py-2 flex items-center justify-center h-52 sm:h-56 w-full overflow-hidden">
+                                        <div className="py-2 flex items-center justify-center h-44 sm:h-48 w-full overflow-hidden">
                                             <img
                                                 src={product.image}
                                                 alt={product.name}
