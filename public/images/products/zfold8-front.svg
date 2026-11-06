@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="fold-frame-front" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="fold-screen-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080d16" />
+      <stop offset="40%" stop-color="#111d2e" />
+      <stop offset="80%" stop-color="#1a1c2e" />
+      <stop offset="100%" stop-color="#06070a" />
+    </linearGradient>
+    <radialGradient id="fold-wallpaper" cx="60%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.35" />
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    <filter id="fold-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="25" stdDeviation="28" flood-color="#0284c7" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Left Hinge Edge -->
+  <rect x="76" y="28" width="18" height="534" rx="6" fill="#334155" stroke="#475569" stroke-width="1.5" />
+
+  <!-- Outer Chassis & Dual-Screen Bezel -->
+  <rect x="90" y="28" width="234" height="534" rx="22" fill="url(#fold-frame-front)" stroke="#38bdf8" stroke-width="1.5" filter="url(#fold-glow)" />
+
+  <!-- Inner Dynamic AMOLED Flex Display -->
+  <rect x="94" y="32" width="226" height="526" rx="18" fill="url(#fold-screen-glow)" />
+  <rect x="94" y="32" width="226" height="526" rx="18" fill="url(#fold-wallpaper)" />
+
+  <!-- Under-Display Front Camera Indicator -->
+  <circle cx="207" cy="50" r="4" fill="#020617" stroke="#334155" stroke-width="1" />
+  <circle cx="207" cy="50" r="1.5" fill="#38bdf8" opacity="0.6" />
+
+  <!-- Clock & Date -->
+  <text x="207" y="145" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="48" font-weight="200" fill="#f8fafc" text-anchor="middle" letter-spacing="-1">09:41</text>
+  <text x="207" y="170" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94a3b8" text-anchor="middle" letter-spacing="0.5">Jumat, 24 Oktober 2026</text>
+
+  <!-- Flex Multi-Window Split Indicator Card -->
+  <g transform="translate(112, 220)">
+    <rect width="190" height="96" rx="12" fill="#0f172a" fill-opacity="0.8" stroke="#38bdf8" stroke-opacity="0.4" stroke-width="1" />
+    <rect x="10" y="10" width="80" height="76" rx="8" fill="#1e293b" />
+    <rect x="100" y="10" width="80" height="76" rx="8" fill="#1e293b" />
+    <text x="50" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" fill="#38bdf8" text-anchor="middle">Multi-Task</text>
+    <text x="140" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" fill="#f1f5f9" text-anchor="middle">Flex Mode</text>
+  </g>
+
+  <!-- SEIN Verified Status Card -->
+  <g transform="translate(112, 332)">
+    <rect width="190" height="52" rx="12" fill="#0f172a" fill-opacity="0.75" stroke="#334155" stroke-width="1" />
+    <circle cx="24" cy="26" r="9" fill="#16a34a" />
+    <path d="M20 26 L23 29 L28 22" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round" />
+    <text x="40" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#f8fafc">Garansi Resmi SEIN</text>
+    <text x="40" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" fill="#94a3b8">Unit Resmi Kemenperin</text>
+  </g>
+
+  <!-- Bottom Navigation Indicator Bar -->
+  <rect x="167" y="535" width="80" height="4" rx="2" fill="#cbd5e1" opacity="0.7" />
+</svg>

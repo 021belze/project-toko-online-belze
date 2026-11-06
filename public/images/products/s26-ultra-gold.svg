@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="body-s26-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dfcfb0" />
+      <stop offset="50%" stop-color="#c8b590" />
+      <stop offset="100%" stop-color="#ab966e" />
+    </linearGradient>
+    <linearGradient id="frame-s26-gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0e3c5" />
+      <stop offset="50%" stop-color="#d1be95" />
+      <stop offset="100%" stop-color="#9d8557" />
+    </linearGradient>
+    <filter id="shadow-gld" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="25" stdDeviation="28" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect x="75" y="32" width="250" height="516" rx="20" fill="url(#frame-s26-gold)" stroke="#d1be95" stroke-width="2" filter="url(#shadow-gld)" />
+  <rect x="79" y="36" width="242" height="508" rx="16" fill="url(#body-s26-gold)" />
+
+  <circle cx="120" cy="85" r="22" fill="#242018" stroke="#786847" stroke-width="3" />
+  <circle cx="120" cy="85" r="14" fill="#14110b" />
+  <circle cx="116" cy="81" r="4" fill="#38bdf8" opacity="0.7" />
+
+  <circle cx="120" cy="145" r="22" fill="#242018" stroke="#786847" stroke-width="3" />
+  <circle cx="120" cy="145" r="14" fill="#14110b" />
+  <circle cx="116" cy="141" r="4" fill="#38bdf8" opacity="0.7" />
+
+  <circle cx="120" cy="205" r="22" fill="#242018" stroke="#786847" stroke-width="3" />
+  <rect x="110" y="195" width="20" height="20" rx="3" fill="#14110b" />
+  <circle cx="117" cy="202" r="3" fill="#fbbf24" opacity="0.8" />
+
+  <circle cx="166" cy="85" r="11" fill="#332c1e" stroke="#877552" stroke-width="2" />
+  <circle cx="166" cy="125" r="8" fill="#fef08a" stroke="#d1be95" stroke-width="2" />
+  <circle cx="166" cy="165" r="13" fill="#242018" stroke="#786847" stroke-width="2" />
+
+  <text x="200" y="490" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" letter-spacing="4" fill="#574627" text-anchor="middle" opacity="0.7">SAMSUNG</text>
+  <text x="200" y="510" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" letter-spacing="1" fill="#695632" text-anchor="middle" opacity="0.6">GALAXY S26 ULTRA</text>
+</svg>

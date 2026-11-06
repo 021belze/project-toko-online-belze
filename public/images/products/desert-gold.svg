@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="body-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cfbba8" />
+      <stop offset="50%" stop-color="#bba48f" />
+      <stop offset="100%" stop-color="#9a8572" />
+    </linearGradient>
+    <linearGradient id="frame-gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#dfcca9" />
+      <stop offset="25%" stop-color="#ab9377" />
+      <stop offset="75%" stop-color="#c9b397" />
+      <stop offset="100%" stop-color="#917c63" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="25" stdDeviation="30" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  
+  <rect x="70" y="30" width="260" height="520" rx="46" fill="url(#frame-gold)" stroke="#eeddc5" stroke-width="2" filter="url(#shadow)" />
+  <rect x="74" y="34" width="252" height="512" rx="42" fill="url(#body-gold)" />
+  
+  <!-- Camera Island -->
+  <rect x="88" y="52" width="106" height="114" rx="28" fill="#aa937d" stroke="#cbb49e" stroke-width="2" />
+  
+  <!-- Lens 1 -->
+  <circle cx="120" cy="84" r="22" fill="#241e19" stroke="#ceb9a5" stroke-width="3"/>
+  <circle cx="120" cy="84" r="14" fill="#090706"/>
+  <circle cx="116" cy="80" r="4" fill="#fbbf24" opacity="0.8"/>
+
+  <!-- Lens 2 -->
+  <circle cx="120" cy="134" r="22" fill="#241e19" stroke="#ceb9a5" stroke-width="3"/>
+  <circle cx="120" cy="134" r="14" fill="#090706"/>
+  <circle cx="116" cy="130" r="4" fill="#fbbf24" opacity="0.8"/>
+
+  <!-- Lens 3 -->
+  <circle cx="164" cy="109" r="22" fill="#241e19" stroke="#ceb9a5" stroke-width="3"/>
+  <circle cx="164" cy="109" r="14" fill="#090706"/>
+  <circle cx="160" cy="105" r="4" fill="#fbbf24" opacity="0.8"/>
+
+  <!-- Flash & Sensor -->
+  <circle cx="164" cy="68" r="7" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" opacity="0.9"/>
+  <circle cx="164" cy="148" r="5" fill="#443a32"/>
+
+  <!-- Logo -->
+  <circle cx="200" cy="290" r="14" fill="none" stroke="#7e6c5c" stroke-width="3"/>
+  <path d="M194 290 Q200 282 206 290 Q200 298 194 290 Z" fill="#7e6c5c" />
+
+  <text x="200" y="500" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#625447" text-anchor="middle" letter-spacing="3">DESERT TITANIUM</text>
+</svg>
