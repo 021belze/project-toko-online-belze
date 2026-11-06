@@ -196,10 +196,10 @@ export default function Home({ models, appName }) {
     const foldSectionRef = useRef(null);
 
     // Scroll progress through the Hero Track:
-    // As user scrolls from 0 to 0.7, the card shrinks from full-bleed to rounded floating card
+    // As user scrolls through the pinned track, the card shrinks smoothly from full-bleed to floating card (scale 1 -> 0.94)
     const { scrollYProgress: heroProgress } = useScroll({
         target: heroTrackRef,
-        offset: ['start start', 'end start'],
+        offset: ['start start', 'end end'],
     });
 
     // Card scale: 1 (full bleed edge-to-edge) down to 0.94 (revealing white borders on left & right, slower over full scroll)
@@ -893,12 +893,12 @@ export default function Home({ models, appName }) {
             {/* Main Discovery Content */}
             <main>
 
-                {/* Official Samsung Hero Showcase: Edge-to-Edge Card Shrinking to Rounded Floating Card on Scroll */}
+                {/* Official Samsung Hero Showcase: Edge-to-Edge Card Shrinking to Floating Card on Scroll */}
                 <div
                     id="s26-ultra-section"
                     ref={heroTrackRef}
                     className="relative w-full bg-white"
-                    style={{ height: 'calc(100vh + 400px)' }}
+                    style={{ height: 'calc(100vh + 500px)' }}
                 >
                     <div className="sticky top-[52px] w-full">
                         <div className="w-full overflow-hidden">
@@ -970,9 +970,16 @@ export default function Home({ models, appName }) {
                 <section
                     id="z-fold8-section"
                     ref={foldSectionRef}
-                    className="relative w-full px-[3vw] max-w-[1720px] mx-auto scroll-mt-16 mb-6 sm:mb-8 lg:mb-12"
+                    className="relative w-full flex justify-center scroll-mt-16 mb-6 sm:mb-8 lg:mb-12"
                 >
-                    <div className="relative w-full h-[calc((100vh-52px)*0.94)] rounded-none overflow-hidden bg-[#1b1527] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.22)]">
+                    <div
+                        style={{
+                            width: '94vw',
+                            maxWidth: '1720px',
+                            height: 'calc((100vh - 52px) * 0.94)',
+                        }}
+                        className="relative rounded-none overflow-hidden bg-[#1b1527] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.22)]"
+                    >
                         {/* Background Hero Banner - Responsive Picture with Subtle Cinematic Parallax */}
                         <motion.div
                             style={{ y: foldImageY }}
